@@ -1,6 +1,8 @@
 ﻿#include <iostream>
 #include <fstream>
 #include <string>
+#include "Person.h"
+#include "Authorization.h"
 
 using namespace std;
 
@@ -26,28 +28,31 @@ bool IsLoggedIn()
 
 }
 
-void menu(int *var);
+int menu();
 
 int main()
 {
-	int *choice = new int();
-	menu(choice);
+	menu();
+}
+
+
+int menu() {
+	Authorization loger;
+
+	int* choice = new int();
+
+	cout << "1: Register\n2: Login\nYour choice: ";
+	cin >> *choice;
+
 	if (*choice == 1) {
-			string username, password;
+		Person* user = new Person();
 
-			cout << "select a username: "; cin >> username;
-			cout << "select a password: "; cin >> password;
+		loger.Register_User(user);
 
-			ofstream file;
-
-			file.open("Z:\\" + username + ".txt");
-			file << username << endl << password;
-			file.close();
-
-			main();
+		menu();
 	}
-	else if (*choice == 2){
-		bool status = IsLoggedIn();
+	else if (*choice == 2) {
+		bool status = loger.Auth_User();
 
 		if (!status) {
 			cout << "False Login!";
@@ -61,13 +66,6 @@ int main()
 			return 1;
 		}
 	}
+
 	delete choice;
-}
-
-
-void menu(int *var) {
-	cout << "1: Register\n2: Login\nYour choice: ";
-	cin >> *var;
-	//cout << var;
-	//cout << *var;
 }
