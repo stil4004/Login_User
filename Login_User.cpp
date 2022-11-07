@@ -1,20 +1,73 @@
-﻿// Login_User.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
+﻿#include <iostream>
+#include <fstream>
+#include <string>
 
-#include <iostream>
+using namespace std;
+
+bool IsLoggedIn()
+{
+	string username, password, _username, _password;
+
+	cout << "Enter username: "; cin >> username;
+	cout << "Enter password: "; cin >> password;
+
+	ifstream read("Z:\\" + username + ".txt");
+	getline(read, _username);
+	getline(read, _password);
+
+	if (_username == username && _password == password)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+}
+
+void menu(int *var);
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	int *choice = new int();
+	menu(choice);
+	if (*choice == 1) {
+			string username, password;
+
+			cout << "select a username: "; cin >> username;
+			cout << "select a password: "; cin >> password;
+
+			ofstream file;
+
+			file.open("Z:\\" + username + ".txt");
+			file << username << endl << password;
+			file.close();
+
+			main();
+	}
+	else if (*choice == 2){
+		bool status = IsLoggedIn();
+
+		if (!status) {
+			cout << "False Login!";
+			system("PAUSE");
+			return 0;
+		}
+		else
+		{
+			cout << "Succesfully loged!";
+			system("PAUSE");
+			return 1;
+		}
+	}
+	delete choice;
 }
 
-// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
 
-// Советы по началу работы 
-//   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
-//   2. В окне Team Explorer можно подключиться к системе управления версиями.
-//   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
-//   4. В окне "Список ошибок" можно просматривать ошибки.
-//   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
-//   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
+void menu(int *var) {
+	cout << "1: Register\n2: Login\nYour choice: ";
+	cin >> *var;
+	//cout << var;
+	//cout << *var;
+}
