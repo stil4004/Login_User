@@ -141,10 +141,12 @@
   <ItemGroup>
     <ClCompile Include="Authorization.cpp" />
     <ClCompile Include="Login_User.cpp" />
+    <ClCompile Include="Logs.cpp" />
     <ClCompile Include="Person.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Authorization.h" />
+    <ClInclude Include="Logs.h" />
     <ClInclude Include="Person.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

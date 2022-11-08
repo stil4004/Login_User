@@ -1,32 +1,12 @@
-﻿#include <iostream>
+﻿#define _CRT_SECURE_NO_WARNINGS
+
+#include <iostream>
 #include <fstream>
 #include <string>
 #include "Person.h"
 #include "Authorization.h"
 
 using namespace std;
-
-bool IsLoggedIn()
-{
-	string username, password, _username, _password;
-
-	cout << "Enter username: "; cin >> username;
-	cout << "Enter password: "; cin >> password;
-
-	ifstream read("Z:\\" + username + ".txt");
-	getline(read, _username);
-	getline(read, _password);
-
-	if (_username == username && _password == password)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-
-}
 
 int menu();
 
@@ -36,33 +16,49 @@ int main()
 }
 
 
-int menu() {
-	Authorization loger;
 
-	int* choice = new int();
+
+
+int menu() {
+	Authorization loger; // Creating object of Auth class
+
+	int* choice = new int(); // User choice variable
+
+	system("CLS"); // Sometimes clear console for beter experience
 
 	cout << "1: Register\n2: Login\nYour choice: ";
 	cin >> *choice;
 
 	if (*choice == 1) {
+
+		// If user want to register, we register it idk
 		Person* user = new Person();
 
-		loger.Register_User(user);
+		system("CLS");
+		loger.Register_User(user); // Using method of class
+		system("CLS");
 
-		menu();
+		menu(); // Recreating menu
+		delete user;
+
 	}
 	else if (*choice == 2) {
-		bool status = loger.Auth_User();
 
-		if (!status) {
-			cout << "False Login!";
-			system("PAUSE");
-			return 0;
+		// Auth parametr of menu
+		system("CLS");
+		bool status = loger.Auth_User();
+		system("CLS");
+
+		if (!status)	
+		{
+			cout << "False Login!\nTry Again\n";
+			menu();
 		}
 		else
 		{
 			cout << "Succesfully loged!";
 			system("PAUSE");
+			// Add some user features (now only return :3)
 			return 1;
 		}
 	}

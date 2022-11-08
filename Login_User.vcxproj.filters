@@ -24,12 +24,18 @@
     <ClCompile Include="Person.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Logs.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Authorization.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Person.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Logs.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
